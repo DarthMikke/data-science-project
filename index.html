@@ -33,6 +33,36 @@
                 chart.update();
             }
 
+            function addTop5New(json) {
+                let html = []
+                json.flestinnmeldingar.topplista
+                .sort((a, b) => a.innmeldingar < b.innmeldingar)
+                .forEach(x => {
+                    html.push(`<tr>
+                        <td>${x.avdeling}</td>
+                        <td>${x.medlemar}</td>
+                        <td>${x.innmeldingar > 0 ? "+" + x.innmeldingar : x.innmeldingar}</td>
+                    </tr>`)
+                })
+                $("#topp-5-innm").before("<h4>" + json.flestinnmeldingar.dato + "</h4>")
+                $("#topp-5-innm").html("<tbody>" + html.join("<br/>") + "</tbody>")
+            }
+
+            function addTop5Divisions(json) {
+                let html = []
+                json.storsteavdelingar.topplista
+                .sort((a, b) => a.medlemar < b.medlemar)
+                .forEach(x => {
+                    html.push(`<tr>
+                        <td>${x.avdeling}</td>
+                        <td>${x.medlemar}</td>
+                        <td>${x.innmeldingar > 0 ? "+" + x.innmeldingar : x.innmeldingar}</td>
+                    </tr>`)
+                })
+                $("#topp-5-storste").before("<h4>" + json.storsteavdelingar.dato + "</h4>")
+                $("#topp-5-storste").html("<tbody>" + html.join("<br/>") + "</tbody>")
+            }
+
             var chart;
 
             async function load() {
@@ -63,6 +93,9 @@
                         }
                     ]
                 );
+
+                addTop5New(json);
+                addTop5Divisions(json);
             }
         </script>
     </head>
@@ -88,6 +121,21 @@
                         <canvas id="myChart"></canvas>
                     </div>
                     <div id="inn-ut-detaljar">
+                        <h3>5 på topp</h3>
+                        <div class="btn-group">
+                            <button class="btn btn-outline-primary" role="button">Innmeldingar</button>
+                            <button class="btn btn-outline-primary" role="button">Medlemar totalt</button>
+                        </div>
+                        <table id="topp-5-innm" class="table">
+                            <tr>
+                                <td>Lastar inn…</td>
+                            </tr>
+                        </table>
+                        <table id="topp-5-storste" class="table"> <!-- style="display: none"> -->
+                            <tr>
+                                <td>Lastar inn…</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </main>
