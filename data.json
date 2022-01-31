@@ -1,0 +1,69 @@
+{
+	"medlemsflyt": {
+		"innmeldingar": [98, 92, 112, 80, 89, 85, 114, 118, 106, 80, 104, 119, 106],
+		"utmeldingar": [51, 75, 75, 52, 50, 65, 76, 43, 45, 54, 54, 77, 77],
+		"datoar": ["2021V41", "2021V42", "2021V43", "2021V44", "2021V45",
+                            "2021V46", "2021V47", "2021V48", "2021V49", "2021V50",
+                            "2021V51", "2021V52", "2022V01"]
+	},
+	"flestinnmeldingar": {
+		"dato": "Veke 2",
+		"topplista": [
+			{
+				"avdeling": "Fagforbundet sporveier",
+				"innmeldingar": 24,
+				"medlemar": 450
+			},
+			{
+				"avdeling": "Fagforbundet Barn og oppvekst Oslo",
+				"innmeldingar": 80,
+				"medlemar": 1000
+			},
+			{
+				"avdeling": "Fagforbundet Kultur Oslo",
+				"innmeldingar": 40,
+				"medlemar": 620
+			},
+			{
+				"avdeling": "Fagforbundet teoLOgene",
+				"innmeldingar": 30,
+				"medlemar": 254
+			},
+			{
+				"avdeling": "Fagforbundet Teater og Scene",
+				"innmeldingar": 90,
+				"medlemar": 587
+			}
+		]
+	},
+	"storsteavdelingar": {
+		"dato": "Veke 2",
+		"topplista": [
+			{
+				"avdeling": "Fagforbundet sporveier",
+				"innmeldingar": 24,
+				"medlemar": 450
+			},
+			{
+				"avdeling": "Fagforbundet Barn og oppvekst Oslo",
+				"innmeldingar": 80,
+				"medlemar": 1000
+			},
+			{
+				"avdeling": "Fagforbundet Kultur Oslo",
+				"innmeldingar": 40,
+				"medlemar": 620
+			},
+			{
+				"avdeling": "Fagforbundet teoLOgene",
+				"innmeldingar": 30,
+				"medlemar": 254
+			},
+			{
+				"avdeling": "Fagforbundet Teater og Scene",
+				"innmeldingar": 90,
+				"medlemar": 587
+			}
+		]
+	}
+}
