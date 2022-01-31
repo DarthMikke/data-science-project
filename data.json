@@ -6,33 +6,36 @@
                             "2021V46", "2021V47", "2021V48", "2021V49", "2021V50",
                             "2021V51", "2021V52", "2022V01"]
 	},
-	"flestinnmeldingar": [
-		{
-			"avdeling": "Fagforbundet sporveier",
-			"innmeldingar": 24,
-			"medlemar": 450
-		},
-		{
-			"avdeling": "Fagforbundet Barn og oppvekst Oslo",
-			"innmeldingar": 80,
-			"medlemar": 1000
-		},
-		{
-			"avdeling": "Fagforbundet Kultur Oslo",
-			"innmeldingar": 40,
-			"medlemar": 620
-		},
-		{
-			"avdeling": "Fagforbundet teoLOgene",
-			"innmeldingar": 30,
-			"medlemar": 254
-		},
-		{
-			"avdeling": "Fagforbundet Teater og Scene",
-			"innmeldingar": 90,
-			"medlemar": 587
-		}
-	],
+	"flestinnmeldingar": {
+		"dato": "Veke 2",
+		"topplista": [
+			{
+				"avdeling": "Fagforbundet sporveier",
+				"innmeldingar": 24,
+				"medlemar": 450
+			},
+			{
+				"avdeling": "Fagforbundet Barn og oppvekst Oslo",
+				"innmeldingar": 80,
+				"medlemar": 1000
+			},
+			{
+				"avdeling": "Fagforbundet Kultur Oslo",
+				"innmeldingar": 40,
+				"medlemar": 620
+			},
+			{
+				"avdeling": "Fagforbundet teoLOgene",
+				"innmeldingar": 30,
+				"medlemar": 254
+			},
+			{
+				"avdeling": "Fagforbundet Teater og Scene",
+				"innmeldingar": 90,
+				"medlemar": 587
+			}
+		]
+	},
 	"storsteavdelingar": [
 		{
 			"avdeling": "Fagforbundet sporveier",
