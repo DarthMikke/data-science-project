@@ -1,12 +1,41 @@
 <html>
     <head>
+        <title>Dashboard – Fagforbundet</title>
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js" integrity="sha256-Y26AMvaIfrZ1EQU49pf6H4QzVTrOI8m9wQYKkftBt4s=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script type="text/javascript">
-            async function loadChart() {
+            function createChart(ctx) {
+                const config = {
+                    type: 'line',
+                    data: {
+                        labels: ['2021V01'],
+                        datasets: [
+                            {label:'Innmeldingar', borderColor: 'blue', data: [1000]},
+                            {label:'Utmeldingar', borderColor: 'red', data: [1000]}
+                        ]
+                    },
+                    options: {}
+                }
+
+                return new Chart(ctx, config);
+            }
+
+            function updateChart(chart, labels, datasets) {
+                console.log("Oppdaterer grafen.");
+                console.log(chart.data);
+                chart.data.labels = labels;
+                chart.data.datasets = datasets;
+                console.log(chart.data);
+                chart.update();
+            }
+
+            var chart;
+
+            async function load() {
                 let response = await fetch('data.json');
                 let json = await response.json();
 
@@ -16,34 +45,24 @@
                 labels = json.medlemsflyt.datoar;
 
                 const ctx = document.getElementById('myChart').getContext('2d');
-                const data = {
-                    labels: labels,
-                    datasets: [
+                chart = createChart(ctx)
+
+                updateChart(
+                    chart,
+                    labels, 
+                    [
                         {
-                            label: 'Innmeldingar',
-                            data: data1,
-                            borderColor: 'blue'
+                            label:'Innmeldingar',
+                            borderColor: 'blue',
+                            data: data1
                         },
                         {
-                            label: 'Utmeldingar',
-                            data: data2,
-                            borderColor: 'red'
+                            label:'Utmeldingar',
+                            borderColor: 'red',
+                            data: data2
                         }
                     ]
-                }
-                const options = {
-
-                }
-                const config = {
-                    type: 'line',
-                    data: data,
-                    options: options
-                }
-                const chart = new Chart(ctx, config)
-            }
-
-            function load() {
-                loadChart();
+                );
             }
         </script>
     </head>
@@ -62,13 +81,14 @@
             <nav id="sidebar-menu">
             </nav>
             <main>
-                <div id="graf" class="col-md-6">
-                     <!-- width="400" height="400" -->
-                    <canvas id="myChart"></canvas>
-                    <script>
-                    </script>
-                </div>
-                <div id="inn-ut-detaljar">
+                <div id="inn-ut" class="col-md-6">
+                    <div id="graf">
+                        <h3>Inn- og utmeldingar</h3>
+                         <!-- width="400" height="400" -->
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div id="inn-ut-detaljar">
+                    </div>
                 </div>
             </main>
         </div>
