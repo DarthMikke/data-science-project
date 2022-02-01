@@ -20,11 +20,28 @@
                     data: {
                         labels: ['2021V01'],
                         datasets: [
-                            {label:'Innmeldingar', borderColor: 'blue', data: [1000]},
-                            {label:'Utmeldingar', borderColor: 'red', data: [1000]}
+                            {
+                                label:'Innmeldingar',
+                                borderColor: 'rgba(54, 162, 235, 1.0)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                data: [1000]
+                            },
+                            {
+                                label:'Utmeldingar',
+                                borderColor: 'rgba(255, 99, 132, 1.0)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                data: [1000]
+                            }
                         ]
                     },
-                    options: {}
+                    options: {
+                        indexAxis: 'x',
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
                 }
 
                 return new Chart(ctx, config);
@@ -99,12 +116,14 @@
                     [
                         {
                             label:'Innmeldingar',
-                            borderColor: 'blue',
+                            borderColor: 'rgba(54, 162, 235, 1.0)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             data: data1
                         },
                         {
                             label:'Utmeldingar',
-                            borderColor: 'red',
+                            borderColor: 'rgba(255, 99, 132, 1.0)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             data: data2
                         }
                     ]
