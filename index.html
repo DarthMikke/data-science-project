@@ -14,36 +14,7 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
-            function createChart(ctx) {
-                const config = {
-                    type: 'line',
-                    data: {
-                        labels: ['2021V01'],
-                        datasets: [
-                            {
-                                label:'Innmeldingar',
-                                borderColor: 'rgba(54, 162, 235, 1.0)',
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                data: [1000]
-                            },
-                            {
-                                label:'Utmeldingar',
-                                borderColor: 'rgba(255, 99, 132, 1.0)',
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                data: [1000]
-                            }
-                        ]
-                    },
-                    options: {
-                        indexAxis: 'x',
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                }
-
+            function createChart(ctx, config) {
                 return new Chart(ctx, config);
             }
 
@@ -97,8 +68,9 @@
             }
 
             var chart;
+            var somechart;
 
-            async function load() {
+            async function loadMembers() {
                 let response = await fetch('members.json');
                 let json = await response.json();
 
@@ -108,7 +80,35 @@
                 labels = json.medlemsflyt.datoar;
 
                 const ctx = document.getElementById('myChart').getContext('2d');
-                chart = createChart(ctx)
+                const config = {
+                    type: 'line',
+                    data: {
+                        labels: ['2021V01'],
+                        datasets: [
+                            {
+                                label:'Innmeldingar',
+                                borderColor: 'rgba(54, 162, 235, 1.0)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                data: [1000]
+                            },
+                            {
+                                label:'Utmeldingar',
+                                borderColor: 'rgba(255, 99, 132, 1.0)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                data: [1000]
+                            }
+                        ]
+                    },
+                    options: {
+                        indexAxis: 'x',
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+                chart = createChart(ctx, config)
 
                 updateChart(
                     chart,
@@ -131,6 +131,72 @@
 
                 addTop5New(json);
                 addTop5Divisions(json);
+            }
+
+            async function loadSome() {
+                let response = await fetch('some.json')
+                let json = await response.json()
+
+                const ctx = document.getElementById('someChart').getContext('2d');
+                const config = {
+                    type: 'bar',
+                    data: {
+                        labels: ['Fagforbundet'],
+                        datasets: [
+                            {
+                                label:'Side',
+                                borderColor: 'rgba(54, 162, 235, 1.0)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                data: [1000]
+                            },
+                            {
+                                label:'Nylege innlegg',
+                                borderColor: 'rgba(255, 99, 132, 1.0)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                data: [1000]
+                            }
+                        ]
+                    },
+                    options: {
+                        indexAxis: 'x',
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+                somechart = createChart(ctx, config);
+
+                let ordered = json.sites.filter(x => x.handle === "fagforbundet").concat(json.sites.filter(x => x.handle !== "fagforbundet"))
+                console.log(ordered.map(x => x.verbose));
+                let labels = json.sites.map(x => x.verbose);
+                let data1 = json.sites.map(x => x.page_likes);
+                let data2 = json.sites.map(x => x.last_week_post_likes);
+                let datasets = [
+                    {
+                        label: 'Side',
+                        borderColor: 'rgba(54, 162, 235, 1.0)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        data: data1
+                    },
+                    {
+                        label: 'Nylege innlegg',
+                        borderColor: 'rgba(255, 99, 132, 1.0)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        data: data2
+                    }
+                ]
+                updateChart(somechart, labels, datasets);
+
+                ordered.forEach(x => {
+                    $("#some-table").append(`<p><a href="https://facebook.com/${x.handle}"><i class="bi bi-facebook"></i>${x.verbose}</a></p>`)
+                })
+            }
+
+            function load() {
+                loadMembers();
+                loadSome();
             }
         </script>
     </head>
@@ -203,7 +269,11 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="inn-ut-detaljar" class="col-md-4">
+                        <div id="some" class="col-md-4">
+                            <h2>Sosiale medium</h2>
+                            <div id="some-table">
+                                <canvas id="someChart" height="400"></canvas>
+                            </div>
                         </div>
                     </div>
                 </main>
