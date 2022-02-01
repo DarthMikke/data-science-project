@@ -173,16 +173,16 @@
                 console.log(ordered.map(x => x.verbose));
                 let labels = json.sites.map(x => x.verbose);
                 let data1 = json.sites.map(x => x.page_likes);
-                let data2 = json.sites.map(x => x.last_week_post_likes);
+                let data2 = json.sites.map(x => x.engagement);
                 let datasets = [
                     {
-                        label: 'Side',
+                        label: 'Likes',
                         borderColor: 'rgba(54, 162, 235, 1.0)',
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         data: data1
                     },
                     {
-                        label: 'Nylege innlegg',
+                        label: 'Engasjement',
                         borderColor: 'rgba(255, 99, 132, 1.0)',
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         data: data2
