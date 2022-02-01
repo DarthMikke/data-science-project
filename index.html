@@ -3,10 +3,16 @@
         <title>Dashboard – Fagforbundet</title>
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="./dashboard.css" rel="stylesheet">
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+        <!-- Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js" integrity="sha256-Y26AMvaIfrZ1EQU49pf6H4QzVTrOI8m9wQYKkftBt4s=" crossorigin="anonymous"></script>
+        <!-- jQuery -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
         <script type="text/javascript">
             function createChart(ctx) {
                 const config = {
@@ -110,53 +116,79 @@
         </script>
     </head>
     <body onload="load();">
-        <header class="">
-            <nav>
-                <div class="col-4">
-                    <a class="navbar-brand" href="/">
-                        <span class="sr-only">Tilbake til forsiden</span>
-                        <img src="logo.svg" alt="Fagforbundet" class="logo">
-                    </a>
-                </div>
-            </nav>
-        </header>
-        <div class="container-fluid ">
-            <nav id="sidebar-menu">
-            </nav>
-            <main>
-                <div id="inn-ut" class="col-md-6">
-                    <div id="graf">
-                        <h3>Inn- og utmeldingar</h3>
-                         <!-- width="400" height="400" -->
-                        <canvas id="myChart"></canvas>
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebar-menu" class="col-md-3 col-lg-3 d-md-block sidebar bg-light collapse border">
+                    <div class="sticky-top pt-2 px-0">
+                        <div class="fagforbundet-logo">
+                            <a class="navbar-brand" href="/">
+                                <span class="visually-hidden-focusable">Tilbake til forsida</span>
+                                <img src="logo.svg" alt="Fagforbundet" class="logo">
+                            </a>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/index.html">
+                                    <span><i class="bi bi-house-fill"></i> Totaloversikt</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/index.html">
+                                    <span><i class="bi bi-graph-up-arrow"></i> Medlemsutvikling</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/some.html">
+                                    <span><i class="bi bi-share"></i> Sosiale medium</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/media.html">
+                                    <span><i class="bi bi-newspaper"></i> Trad. medium</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <div id="inn-ut-detaljar">
-                        <h3>5 på topp</h3>
-                        <div class="btn-group">
-                            <button onclick="showTable('topp-5-innm-wrapper')" class="btn btn-outline-primary" role="button">
-                                Innmeldingar
-                            </button>
-                            <button onclick="showTable('topp-5-storste-wrapper')" class="btn btn-outline-primary" role="button">
-                                Medlemar totalt
-                            </button>
+                </nav>
+                <main class="col-md-9 col-lg-9 pt-4 px-0">
+                    <div id="inn-ut" class="container-fluid row">
+                        <!-- Medlemsutvikling -->
+                        <div id="graf" class="col-md-4 px-0">
+                            <h2>Medlemar</h2>
+                            <h3>Inn og ut</h3>
+                             <!-- width="400"  -->
+                            <canvas id="myChart" height="400"></canvas>
+                            <h3>5 på topp</h3>
+                            <div class="container row mx-0">
+                                <div class="justify-content-center btn-group mx-0">
+                                    <button onclick="showTable('topp-5-innm-wrapper')" class="btn btn-outline-primary btn-sm" role="button">
+                                        Nye
+                                    </button>
+                                    <button onclick="showTable('topp-5-storste-wrapper')" class="btn btn-outline-primary btn-sm" role="button">
+                                        Totalt
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="topp-5-innm-wrapper">
+                                <table id="topp-5-innm" class="table">
+                                    <tr>
+                                        <td>Lastar inn…</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="topp-5-storste-wrapper" style="display: none">
+                                <table id="topp-5-storste" class="table">
+                                    <tr>
+                                        <td>Lastar inn…</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                        <div id="topp-5-innm-wrapper">
-                            <table id="topp-5-innm" class="table">
-                                <tr>
-                                    <td>Lastar inn…</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div id="topp-5-storste-wrapper" style="display: none">
-                            <table id="topp-5-storste" class="table">
-                                <tr>
-                                    <td>Lastar inn…</td>
-                                </tr>
-                            </table>
+                        <div id="inn-ut-detaljar" class="col-md-4">
                         </div>
                     </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
     </body>
 </html>

@@ -1,0 +1,46 @@
+body {
+	color: #3c3c3b;
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+h1 {
+	font-size: 22pt;
+}
+
+h2 {
+	font-size: 20pt;
+}
+
+h3 {
+	font-size: 18pt;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 1000;
+	text-align: center;
+	width: 100%;
+}
+
+.navbar {
+	background-color: #faf8f4;
+}
+
+.nav-link.active {
+	font-weight: 1000;
+}
+
+.nav-link {
+	color: inherit;
+}
+
+.fagforbundet-logo {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.fagforbundet-logo a, .fagforbundet-logo a img {
+	width: 100%;
+	max-width: 10em;
+	width: 100%;
+}
