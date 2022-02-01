@@ -168,7 +168,8 @@
                 }
                 somechart = createChart(ctx, config);
 
-                let ordered = json.sites.filter(x => x.handle === "fagforbundet").concat(json.sites.filter(x => x.handle !== "fagforbundet"))
+                let ordered = json.sites.filter(x => x.handle === "fagforbundet")
+                    .concat(json.sites.filter(x => x.handle !== "fagforbundet"))
                 console.log(ordered.map(x => x.verbose));
                 let labels = json.sites.map(x => x.verbose);
                 let data1 = json.sites.map(x => x.page_likes);
@@ -190,7 +191,9 @@
                 updateChart(somechart, labels, datasets);
 
                 ordered.forEach(x => {
-                    $("#some-table").append(`<p><a href="https://facebook.com/${x.handle}"><i class="bi bi-facebook"></i>${x.verbose}</a></p>`)
+                    $("#some-table").append(`<p><a href="https://facebook.com/${x.handle}">
+                            <i class="bi bi-facebook"></i>${x.verbose}
+                        </a></p>`)
                 })
             }
 
