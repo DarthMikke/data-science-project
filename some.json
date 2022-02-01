@@ -1,0 +1,23 @@
+{
+	"date": "2022-02-01T17:14:00+01:00",
+	"sites": [
+		{
+			"verbose": "Fagforbundet",
+			"handle": "fagforbundet",
+			"page_likes": 53420,
+			"7_days_post_likes": 4080
+		},
+		{
+			"verbose": "Norsk Sykepleierforbund",
+			"handle": "sykepleierforbundet",
+			"page_likes": 90620,
+			"7_days_post_likes": 3491
+		},
+		{
+			"verbose": "Delta",
+			"handle": "delta.i.ys",
+			"page_likes": 13000,
+			"7_days_post_likes": 240
+		}
+	]
+}
