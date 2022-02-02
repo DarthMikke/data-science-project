@@ -5,13 +5,13 @@ import Arbeidsplassen
 
 FILENAME = "resultat/search_results-2022-02-02T16:24:12.csv"
 # Kor mange stillingar skal hentast? Set til 0 for å hente alle.
-TOTAL = 50
+TOTAL = 0
 
 timestamp = datetime.utcnow().isoformat()[:-7]
 hits_df = pd.read_csv(FILENAME)
 
 print(hits_df.info())
-uuids = hits_df.head(TOTAL)['uuid'] if TOTAL < len(hits_df) else hits_df['uuid']
+uuids = hits_df.head(TOTAL)['uuid'] if 0 < TOTAL < len(hits_df) else hits_df['uuid']
 columns = ['reference', 'source', 'sourceurl', 'uuid', 'postal_code', 'county', 'municipal',
            'businessName', 'title', 'extent', 'count', 'engagementtype']
 openings = pd.DataFrame([], columns=columns)
