@@ -1,5 +1,4 @@
 import pandas as pd
-import json
 from datetime import datetime
 from Arbeidsplassen import sok
 
@@ -43,7 +42,6 @@ while fetched < TOTAL:
         } for x in hits
     ]
 
-    #all_hits += hits
     hits_df = hits_df.append(hits)
     fetched += len(hits)
 
