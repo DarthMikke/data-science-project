@@ -26,18 +26,17 @@ Returnerer eit objekt med talet på utlysingar som svarar til søket
 
 Lista inneheld objekt med m.a. parameter:
 - `reference`: referansenummeret for utlysinga,
-- `locationList`: liste med lokasjonar for stillinga(ne),
+- `locationList`: liste med lokasjonar for stillinga(ne), kvart objekt 
+inneheld følgjande parameter av interesse:
+  - `county`: fylke,
+  - `municipal`: kommune,
+  - `postalCode`: postnummer.
 - `businessName`: namnet på eininga,
 - `source`: `SOURCEAPI` om utlysinga er hosta hos Arbeidsplassen, eller
 namnet på tenesta som hostar utlysinga, t.d. `FINN`, `AMEDIA`, `POLARIS`.
 `Stillingsregistrering` var berre brukt 1 gong.
 - `title`: Stillingstittel,
 - `uuid`: UUID brukt til å hente utlysinga gjennom API.
-
-Objektet `locationList` inneheld følgjande parameter av interesse:
-- `county`: fylke,
-- `municipal`: kommune,
-- `postalCode`: postnummer.
 
 Objekta beskrive her kan òg innehalde andre parameter, men dei er
 ikkje nødvendige for dette prosjektet.
