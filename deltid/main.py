@@ -3,6 +3,10 @@ import json
 from datetime import datetime
 from Arbeidsplassen import stilling, sok
 
+
+# Kor mange stillingar skal hentast? Set til 0 for å hente alle.
+TOTAL = 200
+
 search_query = {
     'occupationFirstLevels[]': 'Helse%20og%20sosial',
     'occupationSecondLevels[]': 'Helse%20og%20sosial.Helse',
@@ -12,19 +16,18 @@ search_query = {
 "https://arbeidsplassen.nav.no/stillinger/stilling/334f73d8-0e3f-476c-a61e-2d858d420ff4"
 
 timestamp = datetime.utcnow().isoformat()[:-7]
-total = 200  # TODO: set denne variablen til 0 for produksjon
 fetched = -1
 all_hits = []
 
 # resolved = pd.read_csv('resolved.csv')
-while fetched < total:
+while fetched < TOTAL:
     if fetched > 0:
         search_query['from'] = fetched
 
     response = sok(search_query)
 
-    if total == 0:
-        total = response['hits']['total']['value']
+    if TOTAL == 0:
+        TOTAL = response['hits']['total']['value']
 
     hits = [x['_source'] for x in response['hits']['hits']]
 
