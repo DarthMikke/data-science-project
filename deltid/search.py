@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 from datetime import datetime
-from Arbeidsplassen import stilling, sok
+from Arbeidsplassen import sok
 
 
 # Kor mange stillingar skal hentast? Set til 0 for å hente alle.
@@ -12,8 +12,6 @@ search_query = {
     'occupationSecondLevels[]': 'Helse%20og%20sosial.Helse',
     'size': '50'
 }
-"https://arbeidsplassen.nav.no/stillinger/stilling/673e8258-8959-440f-b387-d97bbc4f83c2"
-"https://arbeidsplassen.nav.no/stillinger/stilling/334f73d8-0e3f-476c-a61e-2d858d420ff4"
 
 timestamp = datetime.utcnow().isoformat()[:-7]
 fetched = -1
