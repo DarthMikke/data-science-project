@@ -47,4 +47,6 @@ while fetched < TOTAL:
 
 print(hits_df.info())
 print(hits_df[:10]['uuid'])
-hits_df.to_csv('resultat/search_results-{}.csv'.format(timestamp))
+NEW_FILENAME = 'resultat/search_results-{}.csv'.format(timestamp)
+hits_df.to_csv(NEW_FILENAME)
+print(f"Lagra søkeresultat i {NEW_FILENAME}.")
