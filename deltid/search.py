@@ -5,7 +5,7 @@ from Arbeidsplassen import sok
 
 
 # Kor mange stillingar skal hentast? Set til 0 for å hente alle.
-TOTAL = 200
+TOTAL = 0
 
 search_query = {
     'occupationFirstLevels[]': 'Helse%20og%20sosial',
