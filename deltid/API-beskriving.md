@@ -20,17 +20,39 @@ from=<int:from>
 tenaren kan hoppe over.
 
 ### Svar
+Returnerer eit objekt med talet på utlysingar som svarar til søket
+(`.hits.total.value`), og sjølve lista over utlysingane
+(`.hits.hits._source`).
+
+Lista inneheld objekt med m.a. parameter:
+- `reference`: referansenummeret for utlysinga,
+- `locationList`: liste med lokasjonar for stillinga(ne),
+- `businessName`: namnet på eininga,
+- `source`: `SOURCEAPI` om utlysinga er hosta hos Arbeidsplassen, eller
+namnet på tenesta som hostar utlysinga, t.d. `FINN`, `AMEDIA`, `POLARIS`.
+`Stillingsregistrering` var berre brukt 1 gong.
+- `title`: Stillingstittel,
+- `uuid`: UUID brukt til å hente utlysinga gjennom API.
+
+Objektet `locationList` inneheld følgjande parameter av interesse:
+- `county`: fylke,
+- `municipal`: kommune,
+- `postalCode`: postnummer.
+
+Objekta beskrive her kan òg innehalde andre parameter, men dei er
+ikkje nødvendige for dette prosjektet.
 
 ## Stilling
 ### Førespurnad
 URL: `https://arbeidsplassen.nav.no/stillinger/api/stilling/<uuid>`
 
 Path-argument:
-`uuid` er id-en til stillinga.
+`uuid` er id-en til stillingsutlysinga.
 
 ### Resultat
 #### 200 OK
 Dersom stillinga er utlyst gjennom Arbeidsplassen.
+
 
 #### xxx
 Dersom stillinga er utlyst gjennom ein tredjepart.
