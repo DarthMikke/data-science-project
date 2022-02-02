@@ -15,12 +15,13 @@ search_query = {
 
 timestamp = datetime.utcnow().isoformat()[:-7]
 fetched = -1
-all_hits = []
+hits_df = pd.DataFrame([])
 
-# resolved = pd.read_csv('resolved.csv')
 while fetched < TOTAL:
     if fetched > 0:
         search_query['from'] = fetched
+    elif fetched == -1:
+        fetched = 0
 
     response = sok(search_query)
 
@@ -42,10 +43,10 @@ while fetched < TOTAL:
         } for x in hits
     ]
 
-    all_hits += hits
+    #all_hits += hits
+    hits_df = hits_df.append(hits)
     fetched += len(hits)
 
-hits_df = pd.read_json(json.dumps(all_hits), orient='records')
 print(hits_df.info())
 print(hits_df[:10]['uuid'])
 hits_df.to_csv('resultat/search_results-{}.csv'.format(timestamp))
