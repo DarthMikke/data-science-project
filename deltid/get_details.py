@@ -45,6 +45,7 @@ for i in range(total):
 
     openings = openings.append(new_row, ignore_index=True)
 
-openings = pd.read_json(json.dumps(openings), orient='records')
 print(openings.info())
-openings.to_csv('resultat/detailed-{}.csv'.format(timestamp))
+NEW_FILENAME = 'resultat/detailed-{}.csv'.format(timestamp)
+openings.to_csv(NEW_FILENAME)
+print(f"Lagra resultatet i {NEW_FILENAME}")
