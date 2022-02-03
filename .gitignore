@@ -1,2 +1,5 @@
 dashboard/secrets.txt
 .idea/
+deltid/resultat/
+deltid/__pycache__/
+deltid/rapportar/
